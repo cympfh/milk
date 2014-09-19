@@ -1,6 +1,6 @@
-all: milk.node test_
+all: milk_node test_
 
-milk.node:
+milk_node:
 	node-gyp configure build
 	cp build/Release/milk.node .
 

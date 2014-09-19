@@ -20,8 +20,8 @@ Handle<Value> Mul(const Arguments& args) {
   Local<Array> ys0 = Local<Array>::Cast(args[1]);
   int n = xs0->Length();
 
-  int xs[n][n];
-  int ys[n][n];
+  double xs[n][n];
+  double ys[n][n];
 
   for (int i=0; i<n; ++i) {
     for (int j=0; j<n; ++j) {

@@ -15,7 +15,7 @@ is_eye = (M) ->
         return false if M[i][j] isnt 0
   return true
 
-for size in [10, 20, 100, 200]
+for size in [10, 20, 40, 100]
   I = eye size
   for i in [0 .. 100]
     I = mul I, I
