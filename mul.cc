@@ -8,8 +8,8 @@ Handle<Value> Mul(const Arguments& args) {
   HandleScope scope;
 
   // type check of args
-  if (   !args[0]->IsArray()
-      || !args[1]->IsArray()) {
+  if ( !args[0]->IsArray()
+    || !args[1]->IsArray()) {
     Local<String> msg = String::New("matmul :: (Matrix, Matrix) -> Matrix");
     ThrowException(Exception::TypeError(msg));
     return scope.Close(Undefined());
@@ -19,26 +19,30 @@ Handle<Value> Mul(const Arguments& args) {
   Local<Array> xs0 = Local<Array>::Cast(args[0]);
   Local<Array> ys0 = Local<Array>::Cast(args[1]);
   int n = xs0->Length();
+  int m = ys0->Length();
+  int l = Local<Array>::Cast(ys0->Get(0))->Length();
 
-  double xs[n][n];
-  double ys[n][n];
+  double xs[n][m];
+  double ys[m][l];
 
   for (int i=0; i<n; ++i) {
-    for (int j=0; j<n; ++j) {
+    for (int j=0; j<m; ++j) {
       xs[i][j] = Local<Array>::Cast(xs0->Get(i))->Get(j)->NumberValue();
+    }
+  }
+  for (int i=0; i<m; ++i) {
+    for (int j=0; j<l; ++j) {
       ys[i][j] = Local<Array>::Cast(ys0->Get(i))->Get(j)->NumberValue();
     }
   }
 
-  // return value
   Local<Array> ret = Array::New(n);
 
-  // assign into `ret`
   for (int i=0; i<n; ++i) {
-    Local<Array> line = Array::New(n);
-    for (int j=0; j<n; ++j) {
+    Local<Array> line = Array::New(l);
+    for (int j=0; j<l; ++j) {
       double sum = 0;
-      for (int k=0; k<n; ++k) {
+      for (int k=0; k<m; ++k) {
         sum += xs[i][k] * ys[k][j];
       }
       line->Set(j, Number::New(sum));
