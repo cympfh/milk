@@ -11,8 +11,6 @@ Basic operations
 
 https://github.com/cympfh/matrix-util/blob/master/test/test.coffee
 
-# implemented operation
-
 ## Notation
 
 ```haskell
@@ -21,7 +19,7 @@ newtype NumberList = Array(Number)
 newtype Matrix = Array(Array(Number))
 ```
 
-## List
+## Operations
 
 ```haskell
 mul :: (Matrix, Matrix) -> Matrix
