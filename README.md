@@ -19,20 +19,27 @@ newtype NumberList = Array(Number)
 newtype Matrix = Array(Array(Number))
 ```
 
-## Operations
+## Procedures
 
 ```haskell
 mat_add :: (Matrix, Matrix) -> Matrix
-mat_mul :: (Matrix, Matrix) -> Matrix
+mat_sub :: (Matrix, Matrix) -> Matrix
+mat_mul :: (Matrix, Matrix) -> Matrix -- 行列サイズに註意
 ```
 
-行列のサイズは自分で責任を持つこと
+それぞれ、行列2つの和差積を返す
+
+```haskell
+mat_neg :: Matrix -> Matrix
+```
+
+各要素をマイナスにした行列を返す
 
 ```haskell
 mat_scale :: (Number, Matrix) -> Matrix
 ```
 
-スカラー倍
+`mat_scale(k, A)` は 行列Aの各要素を k 倍したものを返す
 
 ```haskell
 shape :: Matrix -> [Int, Int]
