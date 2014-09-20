@@ -1,18 +1,18 @@
-Number and Matrix  
-library  
+*Number and Matrix*  
+*library*  
 
-implemented  
-for Node.js  
-written as C++ addon  
+*implemented*  
+*for Node.js*  
+*written as C++ addon*  
 
-## Usage
+# Usage
 ```bash
 cd ~/node_modules/
 git clone git@github.com:cympfh/milk.git
 cd milk; make
 ```
 
-## Notation
+# Notation
 
 ```haskell
 module Number => Int where ...
@@ -20,7 +20,7 @@ newtype NumberList = Array(Number)
 newtype Matrix = Array(Array(Number))
 ```
 
-## Procedures
+# Procedures
 
 ```haskell
 mat_add :: (Matrix, Matrix) -> Matrix
