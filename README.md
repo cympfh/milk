@@ -22,11 +22,17 @@ newtype Matrix = Array(Array(Number))
 ## Operations
 
 ```haskell
-add :: (Matrix, Matrix) -> Matrix
-mul :: (Matrix, Matrix) -> Matrix
+mat_add :: (Matrix, Matrix) -> Matrix
+mat_mul :: (Matrix, Matrix) -> Matrix
 ```
 
 行列のサイズは自分で責任を持つこと
+
+```haskell
+mat_scale :: (Number, Matrix) -> Matrix
+```
+
+スカラー倍
 
 ```haskell
 shape :: Matrix -> [Int, Int]
