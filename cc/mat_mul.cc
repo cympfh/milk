@@ -1,16 +1,16 @@
 #include <node.h>
 #include <v8.h>
-#include "mul.h"
+#include "mat_mul.h"
 
 using namespace v8;
 
-Handle<Value> Mul(const Arguments& args) {
+Handle<Value> MatMul(const Arguments& args) {
   HandleScope scope;
 
   // type check of args
   if ( !args[0]->IsArray()
     || !args[1]->IsArray()) {
-    Local<String> msg = String::New("matmul :: (Matrix, Matrix) -> Matrix");
+    Local<String> msg = String::New("mat_mul :: (Matrix, Matrix) -> Matrix");
     ThrowException(Exception::TypeError(msg));
     return scope.Close(Undefined());
   }

@@ -22,15 +22,20 @@ newtype Matrix = Array(Array(Number))
 ## Operations
 
 ```haskell
+add :: (Matrix, Matrix) -> Matrix
 mul :: (Matrix, Matrix) -> Matrix
 ```
 
-行列 `A`, `B` について、
-`mul(A, B)` は その積を返す．
+行列のサイズは自分で責任を持つこと
 
 ```haskell
-let (n, m) = shape A
-    (l, k) = shape B
-in m == l
+shape :: Matrix -> [Int, Int]
+reshape :: (Matrix, Int, Int) -> Matrix
 ```
+
+```haskell
+make_random :: (Int, Int) -> Matrix
+```
+
+`make_random n, m` は 各要素を `Math.random()` で生成した、n x m 行列を返す
 

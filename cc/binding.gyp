@@ -4,7 +4,7 @@
       "target_name": "milk",
       "sources": [
         "core.cc",
-        "mul.cc"
+        "mat_mul.cc"
       ]
     }
   ]

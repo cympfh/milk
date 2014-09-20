@@ -1,4 +1,4 @@
-{mul} = require '../milk'
+{mat_mul} = require '..'
 
 naiiv_mul = (u, v) ->
 
@@ -40,7 +40,7 @@ for n in [2 .. 20]
   a = make n
   b = make n
 
-  c = mul a, b
+  c = mat_mul a, b
   d = naiiv_mul a, b
 
   console.assert (equal c, d), "#{c} #{d}"
@@ -60,7 +60,7 @@ for n in [3 .. 7]
       a = rect n, m
       b = rect m, l
 
-      c = mul a, b
+      c = mat_mul a, b
       d = naiiv_mul a, b
 
       console.assert (equal c, d), "#{[n, m, l]}"

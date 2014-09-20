@@ -1,12 +1,7 @@
-all: milk_node test_
+all: run_test
 
-milk_node:
-	node-gyp configure build
-	cp build/Release/milk.node .
-
-test_:
-	for t in test/*.coffee; do coffee $$t; done
+run_test:
+	for t in test/*.coffee;do coffee $$t;done
 
 clean:
-	rm milk.node
-	rm -rf build
+	rm -rf ./cc/build/

@@ -1,4 +1,4 @@
-{mul} = require '../milk'
+{mat_mul} = require '..'
 
 eye = (n) ->
   for i in [1..n]
@@ -18,6 +18,6 @@ is_eye = (M) ->
 for size in [10, 20, 40, 100]
   I = eye size
   for i in [0 .. 100]
-    I = mul I, I
+    I = mat_mul I, I
     console.assert is_eye I
 
