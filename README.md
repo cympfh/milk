@@ -5,12 +5,6 @@ implemented
 for Node.js  
 written as C++ addon  
 
-## TODO
-
-Basic operations
-
-https://github.com/cympfh/matrix-util/blob/master/test/test.coffee
-
 ## Notation
 
 ```haskell
