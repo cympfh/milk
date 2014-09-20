@@ -1,8 +1,7 @@
-Operation  
+Number and Matrix  
 library  
-for number and Matrix  
 
-Implemention  
+implemented  
 for Node.js  
 written as C++ addon  
 
@@ -28,5 +27,12 @@ newtype Matrix = Array(Array(Number))
 mul :: (Matrix, Matrix) -> Matrix
 ```
 
-n x n の行列 A, B のついて、
-`mul(A, B)` は A と B の積を返す
+行列 `A`, `B` について、
+`mul(A, B)` は その積を返す．
+
+```haskell
+let (n, m) = shape A
+    (l, k) = shape B
+in m == l
+```
+
