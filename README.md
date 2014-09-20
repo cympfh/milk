@@ -5,6 +5,13 @@ implemented
 for Node.js  
 written as C++ addon  
 
+## Usage
+```bash
+cd ~/node_modules/
+git clone git@github.com:cympfh/milk.git
+cd milk; make
+```
+
 ## Notation
 
 ```haskell
