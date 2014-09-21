@@ -2,14 +2,20 @@
 (function() {
   var eye, make_random, mat_add, mat_neg, mat_scale, mat_sub, reshape, shape, transpose;
 
-  eye = function(n) {
+  eye = function(n, m) {
     var i, j, _i, _results;
+    if (m == null) {
+      m = false;
+    }
+    if (!m) {
+      m = n;
+    }
     _results = [];
     for (i = _i = 0; 0 <= n ? _i < n : _i > n; i = 0 <= n ? ++_i : --_i) {
       _results.push((function() {
         var _j, _results1;
         _results1 = [];
-        for (j = _j = 0; 0 <= n ? _j < n : _j > n; j = 0 <= n ? ++_j : --_j) {
+        for (j = _j = 0; 0 <= m ? _j < m : _j > m; j = 0 <= m ? ++_j : --_j) {
           if (i === j) {
             _results1.push(1);
           } else {
