@@ -1,2 +1,2 @@
 all:
-	coffee -j index.js -c *.coffee
+	cat *.coffee | coffee --compile --stdio > index.js

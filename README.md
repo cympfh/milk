@@ -3,7 +3,7 @@
 
 *implemented*  
 *for Node.js*  
-*written as C++ addon*  
+*with C++ addon*  
 
 # Usage
 ```bash
@@ -21,6 +21,11 @@ newtype Matrix = Array(Array(Number))
 ```
 
 # Procedures
+
+```haskell
+mat_eq :: (Matrix, Matrix) -> Bool
+-- mat_equal for alias
+```
 
 ```haskell
 mat_add :: (Matrix, Matrix) -> Matrix
@@ -53,3 +58,11 @@ make_random :: (Int, Int) -> Matrix
 
 `make_random n, m` は 各要素を `Math.random()` で生成した、n x m 行列を返す
 
+
+```haskell
+mat_inv :: Matrix -> Matrix
+```
+
+逆行列を返す
+
+まだ2x2行列しか実装してない
