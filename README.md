@@ -38,10 +38,8 @@ milk = require('milk')
 
 ## 型のノーテーション
 
-数値型を `Number` とします  
-整数であるとか不動小数であるとかは気にしません  
-ただし複素数をネイティブに扱うつもりはありません
-
+JavaScript 数値型を `Number` と書きます  
+特に整数を `Int` と書きます  
 `Number`のリストのリストを `Matrix` とします  
 `Matrix` の全要素は長さの等しいリストであると仮定して動きます
 
@@ -50,10 +48,14 @@ milk = require('milk')
 本ライブラリは以下の関数をエクスポートします  
 Haskell風の表記を真似て `::` 右に型を示します
 
+### 行列の等価性
+
 ```haskell
 mat_eq :: (Matrix, Matrix) -> Bool
 -- mat_equal for alias
 ```
+
+### 行列の加減算
 
 ```haskell
 mat_add :: (Matrix, Matrix) -> Matrix
@@ -69,15 +71,34 @@ mat_neg :: Matrix -> Matrix
 
 各要素をマイナスにした行列を返す
 
+### スカラー倍
+
 ```haskell
 mat_scale :: (Number, Matrix) -> Matrix
 ```
 
 `mat_scale(k, A)` は 行列Aの各要素を k 倍したものを返す
 
+### 行列の形状
+
 ```haskell
 shape :: Matrix -> [Int, Int]
 reshape :: (Matrix, Int, Int) -> Matrix
+```
+
+`shape` は行列が何行何列であるかを返す
+
+## 単位行列
+
+```haskell
+eye :: Int -> Matrix
+```
+
+`eye(n)` は n次単位正方行列を返す
+
+```
+coffee> milk.reshape (milk.eye 3), 2, 4
+[ [ 1, 0, 0, 0 ], [ 0, 0, 1, 0 ] ]
 ```
 
 ```haskell
@@ -86,11 +107,21 @@ make_random :: (Int, Int) -> Matrix
 
 `make_random n, m` は 各要素を `Math.random()` で生成した、n x m 行列を返す
 
+### 逆行列
 
 ```haskell
 mat_inv :: Matrix -> Matrix
 ```
 
-逆行列を返す
-
 まだ2x2行列しか実装してない
+
+### 対角行列
+
+```haskell
+diag :: [Number] -> Matrix
+```
+
+長さ n の数値のリストを対角成分とする n次正方行列を返す  
+ここで 第(i, i)成分が第i引数に等しい
+
+
