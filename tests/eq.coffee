@@ -1,4 +1,4 @@
-{make_random, mat_eq} = require 'milk'
+{make_random, mat_eq} = require '..'
 
 console.assert mat_eq [[1]], [[1]]
 console.assert not mat_eq [[1]], [[2]]

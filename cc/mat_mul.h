@@ -1,2 +1,2 @@
 using namespace v8;
-Handle<Value> MatMul(const Arguments& args);
+void MatMul(const FunctionCallbackInfo<Value>& args);

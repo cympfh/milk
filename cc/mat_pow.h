@@ -1,2 +1,2 @@
 using namespace v8;
-Handle<Value> MatPow(const Arguments& args);
+void MatPow(const FunctionCallbackInfo<Value>& args);

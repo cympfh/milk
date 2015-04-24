@@ -4,15 +4,16 @@
 
 using namespace v8;
 
-Handle<Value> MatMul(const Arguments& args) {
-  HandleScope scope;
+void MatMul(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = Isolate::GetCurrent();
+  HandleScope scope(isolate);
 
   // type check of args
   if ( !args[0]->IsArray()
     || !args[1]->IsArray()) {
-    Local<String> msg = String::New("mat_mul :: (Matrix, Matrix) -> Matrix");
-    ThrowException(Exception::TypeError(msg));
-    return scope.Close(Undefined());
+    Local<String> msg = String::NewFromUtf8(isolate, "mat_mul :: (Matrix, Matrix) -> Matrix");
+    isolate->ThrowException(Exception::TypeError(msg));
+    return;
   }
 
   // cast args
@@ -36,18 +37,18 @@ Handle<Value> MatMul(const Arguments& args) {
     }
   }
 
-  Local<Array> ret = Array::New(n);
+  Local<Array> ret = Array::New(isolate, n);
 
   for (int i=0; i<n; ++i) {
-    Local<Array> line = Array::New(l);
+    Local<Array> line = Array::New(isolate, l);
     for (int j=0; j<l; ++j) {
       double sum = 0;
       for (int k=0; k<m; ++k) {
         sum += xs[i][k] * ys[k][j];
       }
-      line->Set(j, Number::New(sum));
+      line->Set(j, Number::New(isolate, sum));
     }
     ret->Set(i, line);
   }
-  return scope.Close(ret);
+  args.GetReturnValue().Set(ret);
 }

@@ -1,7 +1,11 @@
-all:
+all: gyp test
+
+gyp:
 	cd cc; make
 	cd coffee; make
-	cd test; make
+
+test:
+	cd tests; make
 
 clean:
 	rm -rf ./cc/build/

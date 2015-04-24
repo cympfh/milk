@@ -6,10 +6,8 @@
 using namespace v8;
 
 void init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("mat_mul"),
-      FunctionTemplate::New(MatMul)->GetFunction());
-  exports->Set(String::NewSymbol("mat_pow"),
-      FunctionTemplate::New(MatPow)->GetFunction());
+  NODE_SET_METHOD(exports, "mat_mul", MatMul);
+  NODE_SET_METHOD(exports, "mat_pow", MatPow);
 }
 
 NODE_MODULE(milk, init)

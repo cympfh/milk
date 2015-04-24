@@ -1,26 +1,54 @@
-*Number and Matrix*  
-*library*  
+# 行列演算を含む数値計算ライブラリ
 
-*implemented*  
-*for Node.js*  
-*with C++ addon*  
+## 参考
 
-# Usage
+1. [math.js | an extensive math library for JavaScript and Node.js](http://mathjs.org/download.html)
+1. [NumPy — Numpy](http://www.numpy.org/)
+
+## 特長
+
+新しくライブラリを整備するのに以下の2つを動機とします
+
+node-gyp によってコンパイルされる C++ で記述されたアドオンとすることで  
+高速なライブラリを目指します  
+ただしほとんどの簡単な計算は返ってオーバーヘッドがあるので全てをアドオンにするわけではありません
+
+行列はあくまでもJavaScriptが持つプリミティブなリスト型で定義し保有します  
+`math.matrix` だとか `numpy.matrix` だとか新しいクラスを混在させないことを目標とします
+
+### node-gyp について
+
+node 0.11 以降、仕様が変わりました  
+iojs の最新版を追います
+
+## コンパイル
+
 ```bash
-cd ~/node_modules/
-git clone git@github.com:cympfh/milk.git
-cd milk; make
+make gyp
+make test
 ```
 
-# Notation
+## 使い方
 
-```haskell
-module Number => Int where ...
-newtype NumberList = Array(Number)
-newtype Matrix = Array(Array(Number))
+```
+milk = require('milk')
 ```
 
-# Procedures
+# 詳細な説明
+
+## 型のノーテーション
+
+数値型を `Number` とします  
+整数であるとか不動小数であるとかは気にしません  
+ただし複素数をネイティブに扱うつもりはありません
+
+`Number`のリストのリストを `Matrix` とします  
+`Matrix` の全要素は長さの等しいリストであると仮定して動きます
+
+## 関数
+
+本ライブラリは以下の関数をエクスポートします  
+Haskell風の表記を真似て `::` 右に型を示します
 
 ```haskell
 mat_eq :: (Matrix, Matrix) -> Bool
@@ -30,7 +58,7 @@ mat_eq :: (Matrix, Matrix) -> Bool
 ```haskell
 mat_add :: (Matrix, Matrix) -> Matrix
 mat_sub :: (Matrix, Matrix) -> Matrix
-mat_mul :: (Matrix, Matrix) -> Matrix -- 行列サイズに註意
+mat_mul :: (Matrix, Matrix) -> Matrix
 ```
 
 それぞれ、行列2つの和差積を返す

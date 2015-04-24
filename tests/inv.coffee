@@ -1,4 +1,4 @@
-{eye, make_random, mat_eq, mat_inv, mat_mul} = require 'milk'
+{eye, make_random, mat_eq, mat_inv, mat_mul} = require '..'
 
 A = eye 2
 console.assert mat_eq (mat_inv A), A

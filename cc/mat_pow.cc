@@ -69,15 +69,16 @@ solve(int n, std::vector<std::vector<double> > d, int k) {
   return d;
 }
 
-Handle<Value> MatPow(const Arguments& args) {
-  HandleScope scope;
+void MatPow(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = Isolate::GetCurrent();
+  HandleScope scope(isolate);
 
   // type check of args
   if ( !args[0]->IsArray()
     || !args[1]->IsNumber()) {
-    Local<String> msg = String::New("mat_pow :: (Matrix, Int) -> Matrix");
-    ThrowException(Exception::TypeError(msg));
-    return scope.Close(Undefined());
+    Local<String> msg = String::NewFromUtf8(isolate, "mat_pow :: (Matrix, Int) -> Matrix");
+    isolate->ThrowException(Exception::TypeError(msg));
+    return;
   }
 
   // cast args
@@ -103,14 +104,14 @@ Handle<Value> MatPow(const Arguments& args) {
 
   c = solve(n, c, k);
 
-  Local<Array> ret = Array::New(n);
+  Local<Array> ret = Array::New(isolate, n);
   for (int i=0; i<n; ++i) {
-    Local<Array> line = Array::New(n);
+    Local<Array> line = Array::New(isolate, n);
     for (int j=0; j<n; ++j) {
-      line->Set(j, Number::New(c[i][j]));
+      line->Set(j, Number::New(isolate, c[i][j]));
     }
     ret->Set(i, line);
   }
 
-  return scope.Close(ret);
+  args.GetReturnValue().Set(ret);
 }
